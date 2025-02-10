@@ -4,7 +4,7 @@ import protectRoute from "../middleware/protectedRoute";
 
 const authRoutes = express.Router();
 
-authRoutes.get("/getMe", protectRoute, getMe);
+authRoutes.get("/me", protectRoute, getMe);
 authRoutes.post("/login", login);
 authRoutes.post("/signup", signup);
 authRoutes.post("/logout", logout);

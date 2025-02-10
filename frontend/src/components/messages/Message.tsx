@@ -1,5 +1,8 @@
+import { useAuthContext } from "../../context/AuthContext";
+import moment from "moment";
 const Message = ({ message }: { message?: any }) => {
-  const fromMe = message.fromMe;
+  const { authUser } = useAuthContext();
+  const fromMe = message?.senderId === authUser?.id;
   const chatClass = fromMe ? "chat-end" : "chat-start";
   const img = fromMe
     ? "https://avatar.iran.liara.run/public/boy?username=johndoe"
@@ -17,7 +20,7 @@ const Message = ({ message }: { message?: any }) => {
         {message.body}
       </p>
       <span className="chat-footer opacity-50 text-xs flex gap-1 items-center text-white">
-        22:59
+        {moment(message.createdAt).format("h:mm a")}
       </span>
     </div>
   );
